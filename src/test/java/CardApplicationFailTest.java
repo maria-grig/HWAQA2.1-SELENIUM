@@ -5,16 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-class CardApplicationSuccessTest {
-
+public class CardApplicationFailTest {
     private WebDriver driver;
-
     @BeforeAll
     static void setUpAll() {
         WebDriverManager.chromedriver().setup();
         //System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
     }
-
     @BeforeEach
     void setUp() {
         ChromeOptions options = new ChromeOptions();
@@ -23,7 +20,6 @@ class CardApplicationSuccessTest {
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
     }
-
     @AfterEach
     void tearDown() {
         driver.quit();
