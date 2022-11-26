@@ -36,7 +36,7 @@ class CardApplicationSuccessTest {
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мария Васильева");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79001112233");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        driver.findElement(By.className("button_theme_alfa-on-white")).click();
+        driver.findElement(By.className("button__text")).click();
         String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         Assertions.assertEquals(expected, actual);
@@ -48,7 +48,7 @@ class CardApplicationSuccessTest {
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Анна-Мария Иванова-Васильева");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+70000000000");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        driver.findElement(By.className("button_theme_alfa-on-white")).click();
+        driver.findElement(By.className("button__text")).click();
         String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         Assertions.assertEquals(expected, actual);
@@ -60,7 +60,7 @@ class CardApplicationSuccessTest {
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мария Васильева");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+00000000000");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        driver.findElement(By.className("button_theme_alfa-on-white")).click();
+        driver.findElement(By.className("button__text")).click();
         String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         Assertions.assertEquals(expected, actual);
@@ -72,7 +72,7 @@ class CardApplicationSuccessTest {
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("МАРИЯ ВАСИЛЬЕВА");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+39001231122");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        driver.findElement(By.className("button_theme_alfa-on-white")).click();
+        driver.findElement(By.className("button__text")).click();
         String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         Assertions.assertEquals(expected, actual);
