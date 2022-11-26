@@ -7,11 +7,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class CardApplicationFailTest {
     private WebDriver driver;
+
     @BeforeAll
     static void setUpAll() {
         WebDriverManager.chromedriver().setup();
         //System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
     }
+
     @BeforeEach
     void setUp() {
         ChromeOptions options = new ChromeOptions();
@@ -20,6 +22,7 @@ public class CardApplicationFailTest {
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
     }
+
     @AfterEach
     void tearDown() {
         driver.quit();
@@ -27,9 +30,9 @@ public class CardApplicationFailTest {
     }
 
     @Test
-    void shouldRunSuccessfullyWithAllData() {
+    void shouldFailWithoutFirstAndLastName() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мария Васильева");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79001112233");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button_theme_alfa-on-white")).click();
@@ -39,10 +42,10 @@ public class CardApplicationFailTest {
     }
 
     @Test
-    void shouldRunSuccessfullyWithDoubleFirstAndLastName() {
+    void shouldFailWithoutPhoneNumber() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Анна-Мария Иванова-Васильева");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+70000000000");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button_theme_alfa-on-white")).click();
         String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
@@ -51,10 +54,10 @@ public class CardApplicationFailTest {
     }
 
     @Test
-    void shouldRunSuccessfullyWithPlusAndZerosAsPhone() {
+    void shouldFailWithoutNameAndPhone() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мария Васильева");
-        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+00000000000");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button_theme_alfa-on-white")).click();
         String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
@@ -63,16 +66,40 @@ public class CardApplicationFailTest {
     }
 
     @Test
-    void shouldRunSuccessfullyWithNameInCaps() {
+    void shouldFailWithoutAgreementCheckBox() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("МАРИЯ ВАСИЛЬЕВА");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+39001231122");
-        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button_theme_alfa-on-white")).click();
         String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    void shouldFailWith12NumbersPhone() {
+        driver.get("http://localhost:9999");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Анна-Мария Иванова-Васильева");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+369001231122");
+        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(By.className("button_theme_alfa-on-white")).click();
+        String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void shouldFailWithNameInLatin() {
+        driver.get("http://localhost:9999");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Anna Petrova");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79001112233");
+        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(By.className("button_theme_alfa-on-white")).click();
+        String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        Assertions.assertEquals(expected, actual);
+
+    }
 }
 
