@@ -11,7 +11,7 @@ public class CardApplicationSuccessTest {
         @BeforeAll
         static void setUpAll() {
             WebDriverManager.chromedriver().setup();
-            System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+            //System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         }
         @BeforeEach
         void setUp() {
@@ -29,7 +29,7 @@ public class CardApplicationSuccessTest {
 
         @Test
         void shouldRunSuccessfullyWithAllData() {
-            driver.get("http://localhost:9999/");
+            driver.get("http://localhost:7777/");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мария Васильева");
             driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79001112233");
             driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
@@ -41,7 +41,7 @@ public class CardApplicationSuccessTest {
 
         @Test
         void shouldRunSuccessfullyWithDoubleFirstAndLastName() {
-            driver.get("http://localhost:9999/");
+            driver.get("http://localhost:7777/");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Анна-Мария Иванова-Васильева");
             driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+70000000000");
             driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
@@ -53,7 +53,7 @@ public class CardApplicationSuccessTest {
 
         @Test
         void shouldRunSuccessfullyWithPlusAndZerosAsPhone() {
-            driver.get("http://localhost:9999/");
+            driver.get("http://localhost:7777/");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мария Васильева");
             driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+00000000000");
             driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
@@ -65,7 +65,7 @@ public class CardApplicationSuccessTest {
 
         @Test
         void shouldRunSuccessfullyWithNameInCaps() {
-            driver.get("http://localhost:9999/");
+            driver.get("http://localhost:7777/");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("МАРИЯ ВАСИЛЬЕВА");
             driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+39001231122");
             driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
