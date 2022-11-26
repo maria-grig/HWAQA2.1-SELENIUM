@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CardApplicationSuccessTest {
+class CardApplicationSuccessTest {
 
     private WebDriver driver;
         @BeforeAll
@@ -29,7 +29,7 @@ public class CardApplicationSuccessTest {
 
         @Test
         void shouldRunSuccessfullyWithAllData() {
-            driver.get("http://localhost:7777/");
+            driver.get("http://localhost:9999");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мария Васильева");
             driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79001112233");
             driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
@@ -41,7 +41,7 @@ public class CardApplicationSuccessTest {
 
         @Test
         void shouldRunSuccessfullyWithDoubleFirstAndLastName() {
-            driver.get("http://localhost:7777/");
+            driver.get("http://localhost:9999");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Анна-Мария Иванова-Васильева");
             driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+70000000000");
             driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
@@ -53,9 +53,9 @@ public class CardApplicationSuccessTest {
 
         @Test
         void shouldRunSuccessfullyWithPlusAndZerosAsPhone() {
-            driver.get("http://localhost:7777/");
+            driver.get("http://localhost:9999");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мария Васильева");
-            driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+10000000000");
+            driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+00000000000");
             driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
             driver.findElement(By.className("button_theme_alfa-on-white")).click();
             String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
@@ -65,7 +65,7 @@ public class CardApplicationSuccessTest {
 
         @Test
         void shouldRunSuccessfullyWithNameInCaps() {
-            driver.get("http://localhost:7777/");
+            driver.get("http://localhost:9999");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("МАРИЯ ВАСИЛЬЕВА");
             driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+39001231122");
             driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
