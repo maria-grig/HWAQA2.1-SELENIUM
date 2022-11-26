@@ -1,3 +1,4 @@
+/*
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -11,7 +12,7 @@ public class CardApplicationFailTest {
     @BeforeAll
     static void setUpAll() {
         WebDriverManager.chromedriver().setup();
-        //System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
     }
 
     @BeforeEach
@@ -21,14 +22,15 @@ public class CardApplicationFailTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
-    }
+   }
 
     @AfterEach
     void tearDown() {
         driver.quit();
         driver = null;
     }
-
+     */
+/*
     @Test
     void shouldFailWithoutFirstAndLastName() {
         driver.get("http://localhost:9999");
