@@ -55,7 +55,7 @@ public class CardApplicationSuccessTest {
         void shouldRunSuccessfullyWithPlusAndZerosAsPhone() {
             driver.get("http://localhost:7777/");
             driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Мария Васильева");
-            driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+00000000000");
+            driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+10000000000");
             driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
             driver.findElement(By.className("button_theme_alfa-on-white")).click();
             String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
