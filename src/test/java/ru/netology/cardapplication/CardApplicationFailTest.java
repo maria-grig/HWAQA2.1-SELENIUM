@@ -4,8 +4,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CardApplicationFailTest {
     private WebDriver driver;
@@ -39,8 +42,8 @@ public class CardApplicationFailTest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79001112233");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button__text")).click();
-        String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        String expected = "Поле обязательно для заполнения";
+        String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid.input__sub")).getText();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -51,8 +54,8 @@ public class CardApplicationFailTest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button__text")).click();
-        String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        String expected = "Поле обязательно для заполнения";
+        String actual = driver.findElement(By.cssSelector("[data-test-id='phone'].input_invalid.input__sub")).getText();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -63,8 +66,8 @@ public class CardApplicationFailTest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button__text")).click();
-        String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        String expected = "Поле обязательно для заполнения";
+        String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid.input__sub")).getText();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -74,9 +77,8 @@ public class CardApplicationFailTest {
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("МАРИЯ ВАСИЛЬЕВА");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+39001231122");
         driver.findElement(By.className("button__text")).click();
-        String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
-        Assertions.assertEquals(expected, actual);
+        WebElement check = driver.findElement(By.cssSelector("[data-test-id='agreement'].input_invalid .checkbox__control"));
+        assertFalse(check.isSelected());
     }
 
     @Test
@@ -86,7 +88,7 @@ public class CardApplicationFailTest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+369001231122");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button__text")).click();
-        String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         Assertions.assertEquals(expected, actual);
 
@@ -99,8 +101,8 @@ public class CardApplicationFailTest {
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79001112233");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button__text")).click();
-        String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
-        String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+        String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
+        String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid.input__sub")).getText();
         Assertions.assertEquals(expected, actual);
 
     }
